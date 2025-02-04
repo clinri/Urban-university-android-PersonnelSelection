@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">PersonnelSelection</string>
+    <string name="text_title_toolbar">Подбор персонала</string>
+    <string name="text_role">Должность</string>
+    <string name="hint_enter_name">Введите имя</string>
+    <string name="hint_enter_surname">Введите фамилию</string>
+    <string name="hint_enter_age">Введите возраст</string>
+    <string name="save">Сохранить</string>
+    <string name="text_exit">Выход</string>
+    <string name="text_clear_filter">Без\nфильтрации</string>
+    <string name="name">Имя:</string>
+    <string name="surname">Фамилия:</string>
+    <string name="age">Возраст:</string>
+    <string name="role">Должность:</string>
 </resources>

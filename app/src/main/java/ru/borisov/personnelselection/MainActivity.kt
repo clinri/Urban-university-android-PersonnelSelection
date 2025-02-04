@@ -1,6 +1,8 @@
 package ru.borisov.personnelselection
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -42,6 +44,52 @@ class MainActivity : AppCompatActivity() {
         title = getString(R.string.text_title_toolbar)
         personItemListLV.adapter = adapterPersonList
         personRoleSpinner.adapter = adapterRoleList
+        setTextWatchers()
+    }
+
+    private fun setTextWatchers() {
+        var indexPersonRole = 0
+        fun checkFields() {
+            val et1 = personNameET.text.toString().trim()
+            val et2 = personSurnameET.text.toString().trim()
+            val et3 = personAgeET.text.toString().trim()
+            saveBTN.isEnabled = et1.isNotEmpty()
+                    && et2.isNotEmpty()
+                    && et3.isNotEmpty()
+                    && indexPersonRole != 0
+        }
+        saveBTN.isEnabled = false
+        val editTexts = listOf(personNameET, personSurnameET, personAgeET)
+        for (editText in editTexts) {
+            editText.addTextChangedListener(object : TextWatcher {
+                override fun afterTextChanged(s: Editable?) {}
+
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int,
+                ) {
+                }
+
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    checkFields()
+                }
+            })
+        }
+        personRoleSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long,
+            ) {
+                indexPersonRole = position
+                checkFields()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
 
     private fun setOnItemLongClickListener() {
